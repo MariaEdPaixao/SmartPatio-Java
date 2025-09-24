@@ -1,0 +1,71 @@
+:root {
+    --background: #F5F5F5;
+    --primary: #009B30;
+    --secondary: #1BA857;
+    --text: #000;
+    --placeholder: #838383;
+}
+
+body {
+    background: var(--background);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.login-container {
+    background: #fff;
+    padding: 3rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 350px;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary);
+    margin-bottom: 2rem;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 0.9rem;
+    margin: 0.5rem 0;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+}
+
+input::placeholder {
+    color: var(--placeholder);
+}
+
+button {
+    width: 100%;
+    padding: 0.9rem;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: var(--secondary);
+}
+
+.links {
+    margin-top: 1rem;
+}
+
+.error-msg, .logout-msg {
+    margin-top: 1rem;
+    color: #e74c3c;
+}

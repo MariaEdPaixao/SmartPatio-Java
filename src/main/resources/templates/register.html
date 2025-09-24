@@ -1,10 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro - SmartPatio</title>
+    <link rel="stylesheet" th:href="@{/css/login.css}" />
 </head>
-<body>
-$END$
+<body class="register-body">
+<div class="register-container">
+    <h1>Crie sua conta</h1>
+    <form th:action="@{/register}" th:object="${usuario}" method="post" class="register-form">
+        <label>Nome
+            <input type="text" th:field="*{nome}" required />
+        </label>
+
+        <label>Email
+            <input type="email" th:field="*{email}" required />
+        </label>
+
+        <label>Senha
+            <input type="password" th:field="*{senha}" required minlength="6" />
+        </label>
+
+        <button type="submit">Cadastrar</button>
+
+        <p class="login-link">
+            Já possui conta?
+            <a th:href="@{/login}">Entrar</a>
+        </p>
+    </form>
+</div>
 </body>
 </html>
