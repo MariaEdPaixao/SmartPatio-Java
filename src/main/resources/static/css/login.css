@@ -4,6 +4,9 @@
     --secondary: #1BA857;
     --text: #000;
     --placeholder: #838383;
+    --border-color: #ccc;
+    --hover-border-color: #1BA857;
+    --button-hover-color: #1BA857;
 }
 
 body {
@@ -13,36 +16,53 @@ body {
     align-items: center;
     height: 100vh;
     font-family: 'Segoe UI', sans-serif;
+    margin: 0;
 }
 
 .login-container {
     background: #fff;
     padding: 3rem;
     border-radius: 1rem;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     text-align: center;
     width: 350px;
 }
 
-.logo {
-    font-size: 2rem;
-    font-weight: bold;
+h1 {
     color: var(--primary);
-    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
 }
 
-input[type="email"],
-input[type="password"] {
+input, select {
     width: 100%;
     padding: 0.9rem;
     margin: 0.5rem 0;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
     border-radius: 0.5rem;
     font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-input::placeholder {
+input::placeholder, select option {
     color: var(--placeholder);
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"%3E%3Cpath fill="none" stroke="%23333" stroke-width="1" d="M3 4l3 3 3-3" /%3E%3C/svg%3E');
+    background-position: right 0.75rem center;
+    background-repeat: no-repeat;
+    padding-right: 2rem;
+}
+
+select:focus, input:focus {
+    border-color: var(--hover-border-color);
+    outline: none;
+    box-shadow: 0 0 5px rgba(27, 168, 87, 0.2);
 }
 
 button {
@@ -58,7 +78,16 @@ button {
 }
 
 button:hover {
-    background: var(--secondary);
+    background: var(--button-hover-color);
+}
+
+label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    display: block;
+    margin-bottom: 0.5rem;
+    text-align: left;
 }
 
 .links {
@@ -68,4 +97,9 @@ button:hover {
 .error-msg, .logout-msg {
     margin-top: 1rem;
     color: #e74c3c;
+}
+
+span.error {
+    color: #d32f2f;
+    font-size: 0.9rem;
 }

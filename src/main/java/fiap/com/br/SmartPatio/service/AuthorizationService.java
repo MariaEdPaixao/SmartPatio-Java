@@ -8,14 +8,16 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AuthorizationService implements UserDetailsService {
-    private final UserRepository userRepository;
 
-    public AuthorizationService(final UserRepository userRepository){
-        this.userRepository = userRepository;
+    private final UserServiceImpl userService;
+
+    public AuthorizationService(UserServiceImpl userService) {
+        this.userService = userService;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findByEmail(username);
+        return userService.findByEmail(username)
+                .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado: " + username));
     }
 }

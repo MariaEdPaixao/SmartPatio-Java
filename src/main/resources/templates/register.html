@@ -1,34 +1,82 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cadastro - SmartPatio</title>
-    <link rel="stylesheet" th:href="@{/css/login.css}" />
+    <title>Cadastro</title>
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-<body class="register-body">
-<div class="register-container">
-    <h1>Crie sua conta</h1>
-    <form th:action="@{/register}" th:object="${usuario}" method="post" class="register-form">
-        <label>Nome
-            <input type="text" th:field="*{nome}" required />
-        </label>
+<body>
+<div class="login-container">
+    <h1>Cadastro de Usuário</h1>
 
-        <label>Email
-            <input type="email" th:field="*{email}" required />
-        </label>
+    <form th:action="@{/register}" th:object="${user}" method="post">
+        <div class="input-group">
+            <label for="nome">Nome:</label>
+            <input type="text" th:field="*{nome}" id="nome" placeholder="Digite seu nome">
+            <span class="error" th:if="${#fields.hasErrors('nome')}"
+                  th:errors="*{nome}"></span>
+        </div>
 
-        <label>Senha
-            <input type="password" th:field="*{senha}" required minlength="6" />
-        </label>
+        <div class="input-group">
+            <label for="email">Email:</label>
+            <input type="email" th:field="*{email}" id="email" placeholder="Digite seu email">
+            <span class="error" th:if="${#fields.hasErrors('email')}"
+                  th:errors="*{email}"></span>
+        </div>
 
-        <button type="submit">Cadastrar</button>
+        <div class="input-group">
+            <label for="senha">Senha:</label>
+            <div style="position: relative;">
+                <i id="togglePassword" class="fa-solid fa-eye"
+                   style="position: absolute; right: 10px; top: 50%;
+                          transform: translateY(-50%); cursor: pointer;">
+                </i>
+            </div>
+            <input type="password" th:field="*{senha}" id="senha"
+                   placeholder="Escolha uma senha">
+            <span class="error" th:if="${#fields.hasErrors('senha')}"
+                  th:errors="*{senha}"></span>
+        </div>
 
-        <p class="login-link">
-            Já possui conta?
-            <a th:href="@{/login}">Entrar</a>
-        </p>
+        <div class="input-group">
+            <label for="filial">Filial:</label>
+            <select th:field="*{filial.id}" id="filial">
+                <option value="">Selecione...</option>
+                <option th:each="f : ${filiais}"
+                        th:value="${f.id}"
+                        th:text="${f.nome}">
+                </option>
+            </select>
+            <span class="error" th:if="${#fields.hasErrors('filial')}"
+                  th:errors="*{filial}"></span>
+        </div>
+
+        <div class="input-group">
+            <label for="role">Papel:</label>
+            <select th:field="*{role}" id="role">
+                <option value="">Selecione...</option>
+                <option th:each="r : ${roles}"
+                        th:value="${r.name()}"
+                        th:text="${r.name()}"></option>
+            </select>
+            <span class="error" th:if="${#fields.hasErrors('role')}"
+                  th:errors="*{role}"></span>
+        </div>
+
+        <button type="submit">Registrar</button>
     </form>
 </div>
+
+<script>
+    const passwordInput = document.getElementById('senha');
+    const togglePassword = document.getElementById('togglePassword');
+    togglePassword.addEventListener('click', () => {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        togglePassword.classList.toggle('fa-eye');
+        togglePassword.classList.toggle('fa-eye-slash');
+    });
+</script>
 </body>
 </html>

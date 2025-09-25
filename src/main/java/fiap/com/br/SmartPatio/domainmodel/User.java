@@ -22,7 +22,7 @@ import java.util.List;
 public class User implements UserDetails {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank(message = "O nome é obrigatório")
@@ -44,6 +44,7 @@ public class User implements UserDetails {
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_filial", nullable = false)
+    @NotNull(message = "A filial é obrigatória")
     @Getter @Setter
     private Filial filial;
 
