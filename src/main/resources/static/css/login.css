@@ -20,12 +20,17 @@ body {
 }
 
 .login-container {
+    display: flex;
+    flex-direction: column;
     background: #fff;
-    padding: 3rem;
+    padding: 3rem 2rem;
     border-radius: 1rem;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: 350px;
+    width: 100%;
+    max-width: 420px;
+    padding: 3rem 2rem;
+    box-sizing: border-box;
 }
 
 h1 {
@@ -91,6 +96,9 @@ label {
 }
 
 .links {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
     margin-top: 1rem;
 }
 
@@ -102,4 +110,123 @@ label {
 span.error {
     color: #d32f2f;
     font-size: 0.9rem;
+}
+
+.login-container form > div {
+    text-align: left;
+}
+
+#senha {
+    padding-right: 2.5rem;
+}
+
+#togglePassword {
+    color: var(--placeholder);
+    transition: color 0.3s ease;
+}
+
+#togglePassword:hover {
+    color: var(--primary);
+}
+
+span.error {
+    display: block;
+    color: #d32f2f;
+    font-size: 0.85rem;
+}
+
+input:invalid,
+select:invalid {
+    border-color: #d32f2f;
+}
+
+input:invalid:focus,
+select:invalid:focus {
+    box-shadow: 0 0 5px rgba(211, 47, 47, 0.2);
+}
+
+@media (max-width: 480px) {
+    .login-container {
+        width: 90%;
+        padding: 2rem;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    input, select, button {
+        font-size: 1rem;
+        padding: 0.75rem;
+    }
+}
+
+#senha + #togglePassword {
+    pointer-events: auto;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+.login-container form div > div[style*="position: relative"] {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.login-container form div > div[style*="position: relative"] input {
+    flex: 1;
+}
+
+#togglePassword {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 2;
+}
+
+.login-container .logo {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary);
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.login-container form input {
+    margin-bottom: 1rem;
+}
+
+.login-container form button {
+    margin-top: 0.5rem;
+}
+
+.login-container .links {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.login-container .links a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.login-container .links a:hover {
+    color: var(--secondary);
+    text-decoration: underline;
+}
+
+.login-container .error-msg,
+.login-container .logout-msg {
+    font-size: 0.95rem;
+    margin-top: 1rem;
+    text-align: center;
+    font-weight: 500;
 }
