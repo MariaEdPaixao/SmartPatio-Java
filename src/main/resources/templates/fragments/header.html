@@ -1,0 +1,31 @@
+<div xmlns:th="http://www.thymeleaf.org"
+     xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <header th:fragment="main-header">
+        <nav class="navbar">
+            <div class="nav-left">
+                <a class="logo" th:href="@{/}">SmartPatio</a>
+                <ul class="nav-links">
+                    <li><a th:href="@{/dashboard}">Dashboard</a></li>
+                    <li><a th:href="@{/motos}">Motos</a></li>
+                    <li><a th:href="@{/carrapatos}">Carrapatos</a></li>
+                    <li sec:authorize="hasRole('GESTOR')">
+                        <a th:href="@{/usuarios}">Funcionários</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="nav-right">
+                <a th:href="@{/perfil}" class="icon-btn" title="Perfil">
+                    <i class="fa-solid fa-user"></i>
+                </a>
+                <form th:action="@{/logout}" method="post" class="logout-form">
+                    <button type="submit" class="icon-btn" title="Sair">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </button>
+                </form>
+            </div>
+        </nav>
+    </header>
+
+</div>

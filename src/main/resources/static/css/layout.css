@@ -1,0 +1,132 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+.content {
+    flex: 1;
+    padding: 2rem;
+}
+
+:root {
+    --background: #F5F5F5;
+    --primary: #009B30;
+    --secondary: #1BA857;
+    --text: #000;
+    --placeholder: #838383;
+    --border-color: #ccc;
+    --hover-border-color: #1BA857;
+    --button-hover-color: #1BA857;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+.navbar {
+    width: 100%;
+    padding: 0.8rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.logo {
+    color: var(--primary);
+    font-weight: bold;
+    font-size: 1.4rem;
+    text-decoration: none;
+    margin-right: 2rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.2rem;
+    list-style: none;
+}
+
+.nav-links a {
+    color: var(--text);
+    text-decoration: none;
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.nav-links a:hover {
+    background: var(--hover-border-color);
+    color: #fff;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text);
+}
+
+
+.logout-form {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.logout-form button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-size: 1.3rem;
+    cursor: pointer;
+    color: var(--text);
+    transition: color 0.2s, transform 0.2s;
+}
+
+.logout-form button:hover {
+    color: var(--button-hover-color);
+    transform: scale(1.1);
+}
+
+
+.icon-btn:hover,
+.logout-form button:hover {
+    color: var(--button-hover-color);
+    transform: scale(1.1);
+}
+
+.footer {
+    width: 100%;
+    padding: 1rem 2rem;
+    background: #fff;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    color: var(--text);
+}
+
+.footer .social a {
+    color: var(--text);
+    margin-left: 0.8rem;
+    font-size: 1.2rem;
+    transition: color 0.2s;
+}
+
+.footer .social a:hover {
+    color: var(--primary);
+}
