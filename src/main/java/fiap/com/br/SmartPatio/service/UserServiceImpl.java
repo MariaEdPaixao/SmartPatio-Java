@@ -35,4 +35,9 @@ public class UserServiceImpl implements UserService {
     public long countByFilial(Long filialId) {
         return usuarioRepository.countByFilial_Id(filialId);
     }
+
+    @Override
+    public void deleteById(Long id){
+        usuarioRepository.deleteById(id);
+    }
 }

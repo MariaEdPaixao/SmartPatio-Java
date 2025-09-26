@@ -1,3 +1,10 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
 :root {
     --background: #F5F5F5;
     --primary: #009B30;
@@ -229,4 +236,21 @@ select:invalid:focus {
     margin-top: 1rem;
     text-align: center;
     font-weight: 500;
+}
+
+.alert {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    max-width: 900px;
+}
+
+.alert.success {
+    background: #e6f9ee;
+    color: #1ba857;
+    border: 1px solid #1ba857;
 }

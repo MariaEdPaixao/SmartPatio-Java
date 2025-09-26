@@ -10,4 +10,5 @@ public interface UserService {
     Optional<User> findByEmail(String email);
     List<User> findAll();
     public long countByFilial(Long filialId);
+    public void deleteById(Long id);
 }

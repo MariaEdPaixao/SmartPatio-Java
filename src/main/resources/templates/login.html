@@ -6,26 +6,34 @@
     <link rel="stylesheet" th:href="@{/css/login.css}">
 </head>
 <body>
-<div class="login-container">
-    <div class="logo">SmartPatio</div>
-    <form th:action="@{/login}" method="post">
-        <input type="email" name="username" placeholder="E-mail">
-        <input type="password" name="password" placeholder="Senha">
+<main class="container">
+    <div th:if="${param.cadastroOk}" class="alert success">
+        <i class="fa fa-check-circle"></i> Cadastro realizado com sucesso! Realize o login para acessar o sistema
+    </div>
+    <div class="login-container">
+        <div class="logo">SmartPatio</div>
+        <form th:action="@{/login}" method="post">
+            <input type="email" name="username" placeholder="E-mail">
+            <input type="password" name="password" placeholder="Senha">
 
-        <button type="submit">Entrar</button>
+            <button type="submit">Entrar</button>
 
-        <div class="links">
-            <a href="#">Esqueceu a senha?</a>
-            <a th:href="@{/register}">Cadastre-se</a>
-        </div>
+            <div class="links">
+                <a href="#">Esqueceu a senha?</a>
+                <a th:href="@{/register}">Cadastre-se</a>
+            </div>
 
-        <div th:if="${param.error}" class="error-msg">
-            Usuário ou senha inválidos
-        </div>
-        <div th:if="${param.logout}" class="logout-msg">
-            Você saiu do sistema.
-        </div>
-    </form>
-</div>
+            <div th:if="${param.error}" class="error-msg">
+                Usuário ou senha inválidos
+            </div>
+            <div th:if="${param.logout}" class="logout-msg">
+                Você saiu do sistema.
+            </div>
+            <div th:if="${param.deletedSuccess}" class="logout-msg">
+                Conta deletada com sucesso.
+            </div>
+        </form>
+    </div>
+</main>
 </body>
 </html>

@@ -1,5 +1,6 @@
 package fiap.com.br.SmartPatio.controller;
 
+import fiap.com.br.SmartPatio.controller.dto.UpdateUserDTO;
 import fiap.com.br.SmartPatio.domainmodel.User;
 import fiap.com.br.SmartPatio.domainmodel.enums.UserRole;
 import fiap.com.br.SmartPatio.service.FilialServiceImpl;
@@ -74,11 +75,54 @@ public class UserController {
 
         if (user.getRole().equals(UserRole.GESTOR)) {
             Long filialId = user.getFilial().getId();
-            model.addAttribute("qtdFuncionarios", userService.countByFilial(filialId));
+            model.addAttribute("qtdFuncionarios", userService.
+
+                    countByFilial(filialId));
 //            model.addAttribute("qtdMotosAtivas", historicoService.countMotosAtivasByFilial(filialId));
         }
 
-        return "profile";
+        return "profile/index";
+    }
+
+    @GetMapping("/perfil/editar")
+    public String showEditProfile(Model model, Principal principal) {
+        User user = userService.findByEmail(principal.getName())
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+        model.addAttribute("user", user);
+        return "profile/edit";
+    }
+
+    @PostMapping("/perfil/editar")
+    public String updateProfile(@Valid @ModelAttribute("user") UpdateUserDTO updatedUser,
+                                BindingResult result,
+                                Principal principal,
+                                Model model) {
+        if (result.hasErrors()) {
+            return "profile/edit";
+        }
+
+        User user = userService.findByEmail(principal.getName())
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+        user.setNome(updatedUser.getNome());
+        user.setEmail(updatedUser.getEmail());
+
+        if (updatedUser.getSenha() != null && !updatedUser.getSenha().isBlank()) {
+            user.setSenha(passwordEncoder.encode(updatedUser.getSenha()));
+        }
+
+        userService.save(user);
+
+        return "redirect:/perfil?editSuccess";
+    }
+
+    @PostMapping("perfil/deletar")
+    public String deleteUser(Principal principal) {
+        User user = userService.findByEmail(principal.getName())
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+        this.userService.deleteById(user.getId());
+
+        return "redirect:/login?deletedSuccess";
     }
 
 }
