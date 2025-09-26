@@ -5,8 +5,7 @@ import fiap.com.br.SmartPatio.domainmodel.enums.UserRole;
 import fiap.com.br.SmartPatio.service.FilialServiceImpl;
 import fiap.com.br.SmartPatio.service.UserServiceImpl;
 import jakarta.validation.Valid;
-import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +13,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.security.Principal;
 
 @Controller
 public class UserController {
@@ -62,4 +63,22 @@ public class UserController {
         userService.save(user);
         return "redirect:/login?cadastroOk";
     }
+
+    @GetMapping("/perfil")
+    public String profile(Model model, Principal principal) {
+        User user = userService.findByEmail(principal.getName())
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+
+        model.addAttribute("user", user);
+
+        if (user.getRole().equals(UserRole.GESTOR)) {
+            Long filialId = user.getFilial().getId();
+            model.addAttribute("qtdFuncionarios", userService.countByFilial(filialId));
+//            model.addAttribute("qtdMotosAtivas", historicoService.countMotosAtivasByFilial(filialId));
+        }
+
+        return "profile";
+    }
+
 }

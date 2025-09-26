@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Meu Perfil - SmartPatio</title>
+    <link rel="stylesheet" th:href="@{/css/layout.css}">
+    <link rel="stylesheet" th:href="@{/css/profile.css}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<div th:replace="fragments/header :: main-header"></div>
+
+<main class="profile-container">
+    <div class="profile-card">
+        <div class="profile-header">
+            <img src="https://via.placeholder.com/100" alt="Foto Perfil" class="profile-pic">
+            <div>
+                <h2 th:text="${user.nome}">Nome Usuário</h2>
+                <p th:text="${user.email}">email@exemplo.com</p>
+                <p class="role" th:text="${user.role}">GESTOR</p>
+            </div>
+        </div>
+
+        <div class="profile-info">
+            <p><strong>Endereço da filial:</strong> <span th:text="${user.filial.endereco}"></span></p>
+
+            <div sec:authorize="hasRole('GESTOR')" class="gestor-stats">
+                <div class="stat-card">
+                    <i class="fa-solid fa-users stat-icon"></i>
+                    <span class="stat-number" th:text="${qtdFuncionarios}">0</span>
+                    <span class="stat-label">Funcionários</span>
+                </div>
+                <div class="stat-card">
+                    <i class="fa-solid fa-motorcycle stat-icon"></i>
+                    <span class="stat-number" th:text="${qtdMotosAtivas}">0</span>
+                    <span class="stat-label">Motos no Pátio</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-actions">
+            <a class="btn" th:href="@{/profile/edit}"><i class="fa fa-edit"></i> Editar Perfil</a>
+            <form th:action="@{/logout}" method="post" class="inline-form">
+                <button class="btn danger"><i class="fa fa-sign-out-alt"></i> Sair</button>
+            </form>
+            <form th:action="@{/profile/delete}" method="post" class="inline-form">
+                <button class="btn danger"><i class="fa fa-trash"></i> Deletar Conta</button>
+            </form>
+        </div>
+    </div>
+</main>
+
+<div th:replace="fragments/footer :: main-footer"></div>
+</body>
+</html>

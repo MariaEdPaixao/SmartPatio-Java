@@ -9,4 +9,5 @@ public interface UserService {
     User save(User usuario);
     Optional<User> findByEmail(String email);
     List<User> findAll();
+    public long countByFilial(Long filialId);
 }

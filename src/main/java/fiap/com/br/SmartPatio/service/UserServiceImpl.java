@@ -31,4 +31,8 @@ public class UserServiceImpl implements UserService {
     public List<User> findAll() {
         return usuarioRepository.findAll();
     }
+    @Override
+    public long countByFilial(Long filialId) {
+        return usuarioRepository.countByFilial_Id(filialId);
+    }
 }
