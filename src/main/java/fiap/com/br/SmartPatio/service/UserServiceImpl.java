@@ -3,6 +3,7 @@ package fiap.com.br.SmartPatio.service;
 import fiap.com.br.SmartPatio.datasource.repository.UserRepository;
 import fiap.com.br.SmartPatio.domainmodel.User;
 
+import fiap.com.br.SmartPatio.exception.UserNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -45,4 +46,11 @@ public class UserServiceImpl implements UserService {
     public List<User> findByFilialId(Long filialId) {
         return usuarioRepository.findByFilialId(filialId);
     }
+
+    @Override
+    public User findByEmailOrThrow(String email) {
+        return usuarioRepository.findByEmail(email)
+                .orElseThrow(UserNotFoundException::new);
+    }
+
 }

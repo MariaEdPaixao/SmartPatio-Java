@@ -111,8 +111,7 @@ public class UserController {
 
     @GetMapping("/perfil")
     public String profile(Model model, Principal principal) {
-        User user = userService.findByEmail(principal.getName())
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+        User user = userService.findByEmailOrThrow(principal.getName());
         List<HistoricMotorcycleFilial> ativos = historicoService.findByStatusAndFilial(HistoricMotorcycleStatus.ATIVA, user.getFilial());
 
         model.addAttribute("user", user);
@@ -130,8 +129,7 @@ public class UserController {
 
     @GetMapping("/perfil/editar")
     public String showEditProfile(Model model, Principal principal) {
-        User user = userService.findByEmail(principal.getName())
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+        User user = userService.findByEmailOrThrow(principal.getName());
         model.addAttribute("user", user);
         return "profile/edit";
     }
@@ -145,8 +143,7 @@ public class UserController {
             return "profile/edit";
         }
 
-        User user = userService.findByEmail(principal.getName())
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+        User user = userService.findByEmailOrThrow(principal.getName());
 
         user.setNome(updatedUser.getNome());
         user.setEmail(updatedUser.getEmail());
@@ -162,8 +159,7 @@ public class UserController {
 
     @PostMapping("perfil/deletar")
     public String deleteUser(Principal principal) {
-        User user = userService.findByEmail(principal.getName())
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+        User user = userService.findByEmailOrThrow(principal.getName());
         this.userService.deleteById(user.getId());
 
         return "redirect:/login?deletedSuccess";
@@ -171,8 +167,7 @@ public class UserController {
 
     @GetMapping("/funcionarios")
     public String listFuncionarios(Model model, Principal principal) {
-        User gestor = userService.findByEmail(principal.getName())
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+        User gestor = userService.findByEmailOrThrow(principal.getName());
 
         Long filialId = gestor.getFilial().getId();
 

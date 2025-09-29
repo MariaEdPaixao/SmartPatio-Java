@@ -36,7 +36,7 @@ public class FilialController {
 
     @GetMapping("/entrada")
     public String entrada(Model model, Principal principal) {
-        User usuario = searchLoggedInUser(principal);
+        User usuario = userService.findByEmailOrThrow(principal.getName());
         Long filialId = usuario.getFilial().getId();
         Long usuarioId = usuario.getId();
 
@@ -55,7 +55,7 @@ public class FilialController {
 
     @GetMapping("/saida")
     public String saida(Model model, Principal principal) {
-        User user = searchLoggedInUser(principal);
+        User user = userService.findByEmailOrThrow(principal.getName());
         Long filialId = user.getFilial().getId();
 
         List<HistoricMotorcycleFilial> ativos = historicoService.findByStatusAndFilial(HistoricMotorcycleStatus.ATIVA, user.getFilial());
@@ -70,9 +70,4 @@ public class FilialController {
         return "filial/saida";
     }
 
-    private User searchLoggedInUser(Principal principal) {
-        String email = principal.getName();
-        return userService.findByEmail(email)
-                .orElseThrow(() -> new IllegalStateException("Usuário não encontrado"));
-    }
 }

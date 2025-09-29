@@ -9,7 +9,8 @@ public interface UserService {
     User save(User usuario);
     Optional<User> findByEmail(String email);
     List<User> findAll();
-    public long countByFilial(Long filialId);
-    public void deleteById(Long id);
-    public  List<User> findByFilialId(Long filialId);
+    long countByFilial(Long filialId);
+    void deleteById(Long id);
+    List<User> findByFilialId(Long filialId);
+    User findByEmailOrThrow(String email);
 }

@@ -31,8 +31,7 @@ public class DashboardController {
 
     @GetMapping("/")
     public String dashboard(Model model, Principal principal) {
-        User user = userService.findByEmail(principal.getName())
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+        User user = userService.findByEmailOrThrow(principal.getName());
         List<HistoricMotorcycleFilial> ativos = historicoService.findByStatusAndFilial(HistoricMotorcycleStatus.ATIVA, user.getFilial());
         List<HistoricMotorcycleFilial> finalizadas = historicoService.findByStatusAndFilial(HistoricMotorcycleStatus.FINALIZADA, user.getFilial());
         List<Carrapato> carrapatos = carrapatoService.findTop5ByOrderByNivelBateriaAsc();

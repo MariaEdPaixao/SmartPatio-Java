@@ -11,5 +11,4 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByEmail(String email);
     long countByFilial_Id(Long filialId);
     List<User> findByFilialId(Long filialId);
-
 }
