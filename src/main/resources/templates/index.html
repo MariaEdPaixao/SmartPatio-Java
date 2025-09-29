@@ -51,7 +51,10 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="h : ${ativos}">
+        <tr th:if="${#lists.isEmpty(ativos)}">
+            <td colspan="3" class="empty-row">Nenhuma moto registrada</td>
+        </tr>
+        <tr th:each="h : ${ativos}" th:unless="${#lists.isEmpty(ativos)}">
             <td th:text="${h.moto.placa}">ABC123</td>
             <td th:text="${h.carrapato.codigoSerial}">CAR-001</td>
             <td th:text="${h.dataEntrada != null ? #temporals.format(h.dataEntrada, 'dd/MM/yyyy HH:mm') : '-'}">27/09/2025 18:45</td>
@@ -71,7 +74,10 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="h : ${finalizadas}">
+        <tr th:if="${#lists.isEmpty(finalizadas)}">
+            <td colspan="3" class="empty-row">Nenhuma moto registrada</td>
+        </tr>
+        <tr th:each="h : ${finalizadas}" th:unless="${#lists.isEmpty(finalizadas)}">
             <td th:text="${h.moto.placa}">XYZ789</td>
             <td th:text="${h.carrapato.codigoSerial}">CAR-002</td>
             <td th:text="${h.dataEntrada != null ? #temporals.format(h.dataEntrada, 'dd/MM/yyyy HH:mm') : '-'}">-</td>
