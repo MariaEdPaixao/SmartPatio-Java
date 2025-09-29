@@ -11,4 +11,5 @@ public interface UserService {
     List<User> findAll();
     public long countByFilial(Long filialId);
     public void deleteById(Long id);
+    public  List<User> findByFilialId(Long filialId);
 }

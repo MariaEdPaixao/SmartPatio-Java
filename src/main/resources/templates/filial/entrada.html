@@ -1,10 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Entrada de Moto - SmartPatio</title>
+    <link rel="stylesheet" th:href="@{/css/layout.css}">
+    <link rel="stylesheet" th:href="@{/css/filial.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-$END$
+<div th:replace="fragments/header :: main-header"></div>
+
+<main class="patio-container content">
+    <h1><i class="fas fa-sign-in-alt"></i> Entrada de Moto</h1>
+    <p class="subtitle"><i class="fas fa-motorcycle"></i> Simulando entrada no pátio...</p>
+    <div id="log" class="console"></div>
+    <a href="/" class="btn-voltar"><i class="fas fa-arrow-left"></i> Voltar ao menu</a>
+</main>
+
+<div th:replace="fragments/footer :: main-footer"></div>
+
+<script th:inline="javascript">
+    const placa = /*[[${placa}]]*/ "ABC123";
+    const carrapato = /*[[${carrapato}]]*/ "XY789";
+
+    function simulateEntrada(moto, carrapato) {
+        const log = document.getElementById("log");
+        log.innerHTML = "<i class='fas fa-search'></i> Identificando placa...";
+
+        setTimeout(() => { log.innerHTML = "<i class='fas fa-check-circle'></i> Moto <b>" + moto + "</b> identificada";}, 1500);
+
+        setTimeout(() => { log.innerHTML += "<br><span id='loading-carrapato'><i class='fas fa-spinner fa-spin'></i> Vinculando carrapato...</span>";}, 3000);
+
+        setTimeout(() => {
+            const loading = document.getElementById("loading-carrapato");
+            if (loading) loading.remove();
+            log.innerHTML += "<br><i class='fas fa-check-circle'></i> Carrapato <b>" + carrapato + "</b> vinculado";
+        }, 4500);
+
+        setTimeout(() => {
+            log.innerHTML += "<br><br><i class='fas fa-warehouse'></i> Moto <b>" + moto + "</b> entrou no pátio com carrapato <b>" + carrapato + "</b>!";
+        }, 6000);
+    }
+
+    simulateEntrada(placa, carrapato);
+</script>
 </body>
 </html>

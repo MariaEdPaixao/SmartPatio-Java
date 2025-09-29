@@ -1,4 +1,7 @@
 package fiap.com.br.SmartPatio.domainmodel.enums;
 
-public class CarrapatoStatus {
+public enum CarrapatoStatus {
+    DISPONIVEL,
+    EM_USO,
+    MANUTENCAO
 }

@@ -1,10 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Pátio - SmartPatio</title>
+    <link rel="stylesheet" th:href="@{/css/layout.css}">
+    <link rel="stylesheet" th:href="@{/css/filial.css}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-$END$
+<div th:replace="fragments/header :: main-header"></div>
+
+<main class="patio-container">
+    <h1><i class="fa-solid fa-warehouse"></i> Controle de Pátio</h1>
+    <p>Selecione a operação que deseja realizar:</p>
+
+    <div class="action-cards">
+        <a th:href="@{/filial/entrada}" class="card entrada">
+            <i class="fa-solid fa-sign-in-alt"></i>
+            <h2>Registrar Entrada</h2>
+            <p>Identificar moto e vincular ao carrapato disponível</p>
+        </a>
+
+        <a th:href="@{/filial/saida}" class="card saida">
+            <i class="fa-solid fa-sign-out-alt"></i>
+            <h2>Registrar Saída</h2>
+            <p>Encerrar sessão da moto e liberar o carrapato</p>
+        </a>
+    </div>
+</main>
+
+<div th:replace="fragments/footer :: main-footer"></div>
 </body>
 </html>
