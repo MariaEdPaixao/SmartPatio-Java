@@ -21,7 +21,6 @@
     </div>
 
     <div th:unless="${#lists.isEmpty(ativos)} and ${#lists.isEmpty(finalizadas)}">
-    <!-- Cards de resumo -->
     <div class="dashboard-cards">
         <div class="card-summary">
             <i class="fas fa-motorcycle"></i>
@@ -40,7 +39,6 @@
         </div>
     </div>
 
-    <!-- Tabela de motos ativas -->
     <h2><i class="fas fa-motorcycle"></i> Motos Ativas no Pátio</h2>
     <table class="dashboard-table">
         <thead>
@@ -62,7 +60,6 @@
         </tbody>
     </table>
 
-    <!-- Tabela de motos que saíram -->
     <h2><i class="fas fa-flag-checkered"></i> Motos que Saíram</h2>
     <table class="dashboard-table">
         <thead>
@@ -86,33 +83,31 @@
         </tbody>
     </table>
 
-    <!-- Gráfico de bateria -->
     <h2><i class="fas fa-battery-three-quarters"></i> Nível de Bateria dos Carrapatos</h2>
     <canvas id="graficoBateria" width="400" height="200"></canvas>
-    <script th:inline="javascript">
-        const labels =  ["CAR-001", "CAR-002"];
-        const data = [80, 65];
+        <script th:inline="javascript">
+            const labels = /*[[${carrapatoLabels}]]*/ [];
+            const data = /*[[${bateriaNiveis}]]*/ [];
 
-        new Chart(document.getElementById('graficoBateria'), {
-            type: 'bar',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Bateria (%)',
-                    data: data,
-                    backgroundColor: '#009B30'
-                }]
-            },
-            options: {
-                scales: {
-                    y: { beginAtZero: true, max: 100 }
+            new Chart(document.getElementById('graficoBateria'), {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Bateria (%)',
+                        data: data,
+                        backgroundColor: '#009B30'
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: { beginAtZero: true, max: 100 }
+                    }
                 }
-            }
-        });
-    </script>
+            });
+        </script>
     </div>
 
-    <!-- Botão de registrar frota -->
     <a href="/filial" class="btn-dashboard">
         <i class="fas fa-plus-circle"></i> Registrar Nova Moto
     </a>

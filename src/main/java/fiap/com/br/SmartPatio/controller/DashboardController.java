@@ -37,6 +37,17 @@ public class DashboardController {
         List<HistoricMotorcycleFilial> finalizadas = historicoService.findByStatusAndFilial(HistoricMotorcycleStatus.FINALIZADA, user.getFilial());
         List<Carrapato> carrapatos = carrapatoService.findTop5ByOrderByNivelBateriaAsc();
 
+        List<String> carrapatoLabels = carrapatos.stream()
+                .map(Carrapato::getCodigoSerial)
+                .toList();
+
+        List<Integer> bateriaNiveis = carrapatos.stream()
+                .map(Carrapato::getNivelBateria)
+                .toList();
+
+        model.addAttribute("carrapatoLabels", carrapatoLabels);
+        model.addAttribute("bateriaNiveis", bateriaNiveis);
+
         model.addAttribute("user", user);
         model.addAttribute("ativos", ativos);
         model.addAttribute("finalizadas", finalizadas);
