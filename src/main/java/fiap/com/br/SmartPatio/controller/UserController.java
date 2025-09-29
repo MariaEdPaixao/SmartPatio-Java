@@ -1,5 +1,6 @@
 package fiap.com.br.SmartPatio.controller;
 
+import fiap.com.br.SmartPatio.controller.dto.ResetPassordDTO;
 import fiap.com.br.SmartPatio.controller.dto.UpdateUserDTO;
 import fiap.com.br.SmartPatio.domainmodel.HistoricMotorcycleFilial;
 import fiap.com.br.SmartPatio.domainmodel.User;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class UserController {
@@ -77,6 +79,34 @@ public class UserController {
 
         userService.save(user);
         return "redirect:/login?cadastroOk";
+    }
+
+    @GetMapping("/redefinir-senha")
+    public String showResetForm(Model model) {
+        model.addAttribute("user", new ResetPassordDTO());
+        return "redefinir-senha";
+    }
+
+    @PostMapping("/redefinir-senha")
+    public String processReset( @Valid @ModelAttribute("user") ResetPassordDTO resetPassordDTO,
+                               BindingResult bindingResult,
+                               Model model) {
+        if(bindingResult.hasErrors()){
+            return "redefinir-senha";
+        }
+
+        Optional<User> userOpt = userService.findByEmail(resetPassordDTO.getEmail());
+
+        if (userOpt.isPresent()) {
+            User user = userOpt.get();
+            user.setSenha(passwordEncoder.encode(resetPassordDTO.getSenha()));
+            userService.save(user);
+            model.addAttribute("senhaAtualizada", true);
+        } else {
+            model.addAttribute("erro", true);
+        }
+
+        return "redefinir-senha";
     }
 
     @GetMapping("/perfil")

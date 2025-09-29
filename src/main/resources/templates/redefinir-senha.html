@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Redefinir Senha - SmartPatio</title>
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+<body>
+<main class="container">
+    <div th:if="${senhaAtualizada}" class="alert success">
+        <i class="fa fa-check-circle"></i> Senha atualizada com sucesso! Faça login com sua nova senha.
+    </div>
+    <div class="login-container">
+        <h1><i class="fas fa-unlock-alt"></i> Redefinir Senha</h1>
+        <form th:action="@{/redefinir-senha}" th:object="${user}" method="post">
+            <div>
+                <input type="email" th:field="*{email}" id="email" placeholder="Digite seu e-mail cadastrado">
+                <span class="error" th:if="${#fields.hasErrors('email')}"
+                      th:errors="*{email}"></span>
+            </div>
+            <div>
+                <input type="password" th:field="*{senha}" name="senha" placeholder="Nova senha">
+                <span class="error" th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}"></span>
+            </div>
+            <button type="submit">Atualizar senha</button>
+        </form>
+
+        <div th:if="${erro}" class="error-msg">
+            E-mail não encontrado. Verifique e tente novamente.
+        </div>
+
+        <div class="links">
+            <a th:href="@{/login}" class="btn-voltar">Voltar ao login</a>
+        </div>
+    </div>
+</main>
+</body>
+</html>
