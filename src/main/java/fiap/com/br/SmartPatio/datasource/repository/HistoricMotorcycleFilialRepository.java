@@ -11,6 +11,5 @@ import java.util.Optional;
 
 public interface HistoricMotorcycleFilialRepository extends JpaRepository<HistoricMotorcycleFilial, Long> {
     Optional<HistoricMotorcycleFilial> findByMotoAndStatus(Motorcycle moto, HistoricMotorcycleStatus status);
-    List<HistoricMotorcycleFilial> findByFilialAndStatus(Filial filial, HistoricMotorcycleStatus status);
     List<HistoricMotorcycleFilial> findByStatusAndFilial(HistoricMotorcycleStatus status, Filial filial);
 }

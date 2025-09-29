@@ -55,8 +55,8 @@ public class MotorcycleEntryExitServiceImpl implements MotorcycleEntryExitServic
     @Override
     @Transactional
     public HistoricMotorcycleFilial registerExitAleatoria(Long filialId, Long usuarioId) {
-        List<HistoricMotorcycleFilial> ativos = historicoRepository.findByFilialAndStatus(
-                new Filial(filialId), HistoricMotorcycleStatus.ATIVA);
+        List<HistoricMotorcycleFilial> ativos = historicoRepository.findByStatusAndFilial(
+                HistoricMotorcycleStatus.ATIVA, new Filial(filialId));
 
         if (ativos.isEmpty()) {
             throw new IllegalStateException("Nenhuma moto ativa no pátio da filial");

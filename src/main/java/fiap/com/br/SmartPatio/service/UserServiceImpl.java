@@ -12,44 +12,44 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private final UserRepository usuarioRepository;
+    private final UserRepository userRepository;
 
-    public UserServiceImpl(UserRepository usuarioRepository) {
-        this.usuarioRepository = usuarioRepository;
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     @Override
     public User save(User usuario) {
-        return usuarioRepository.save(usuario);
+        return userRepository.save(usuario);
     }
 
     @Override
     public Optional<User> findByEmail(String email) {
-        return usuarioRepository.findByEmail(email);
+        return userRepository.findByEmail(email);
     }
 
     @Override
     public List<User> findAll() {
-        return usuarioRepository.findAll();
+        return userRepository.findAll();
     }
     @Override
     public long countByFilial(Long filialId) {
-        return usuarioRepository.countByFilial_Id(filialId);
+        return userRepository.countByFilial_Id(filialId);
     }
 
     @Override
     public void deleteById(Long id){
-        usuarioRepository.deleteById(id);
+        userRepository.deleteById(id);
     }
 
     @Override
     public List<User> findByFilialId(Long filialId) {
-        return usuarioRepository.findByFilialId(filialId);
+        return userRepository.findByFilialId(filialId);
     }
 
     @Override
     public User findByEmailOrThrow(String email) {
-        return usuarioRepository.findByEmail(email)
+        return userRepository.findByEmail(email)
                 .orElseThrow(UserNotFoundException::new);
     }
 

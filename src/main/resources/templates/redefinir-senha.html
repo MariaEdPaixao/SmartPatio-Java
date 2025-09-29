@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Redefinir Senha - SmartPatio</title>
     <link rel="stylesheet" th:href="@{/css/login.css}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 <main class="container">
@@ -18,8 +20,12 @@
                 <span class="error" th:if="${#fields.hasErrors('email')}"
                       th:errors="*{email}"></span>
             </div>
-            <div>
-                <input type="password" th:field="*{senha}" name="senha" placeholder="Nova senha">
+            <div style="position: relative;">
+                <input type="password" th:field="*{senha}" name="senha" placeholder="Nova senha" id="senha">
+                <i id="togglePassword" class="fa-solid fa-eye"
+                   style="position: absolute; right: 10px; top: 50%;
+          transform: translateY(-50%); cursor: pointer;">
+                </i>
                 <span class="error" th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}"></span>
             </div>
             <button type="submit">Atualizar senha</button>

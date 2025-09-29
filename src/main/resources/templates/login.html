@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>SmartPatio - Login</title>
     <link rel="stylesheet" th:href="@{/css/login.css}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 <main class="container">
@@ -15,8 +17,13 @@
         <form th:action="@{/login}" method="post">
             <input type="email" name="username" id="username" placeholder="E-mail"
                    th:value="${username}">
-            <input type="password" name="password" placeholder="Senha">
-
+            <div style="position: relative;">
+                <input type="password" name="password" placeholder="Senha" id="senha">
+                <i id="togglePassword" class="fa-solid fa-eye"
+                   style="position: absolute; right: 10px; top: 50%;
+          transform: translateY(-50%); cursor: pointer;">
+                </i>
+            </div>
             <button type="submit">Entrar</button>
 
             <div class="links">
@@ -36,5 +43,15 @@
         </form>
     </div>
 </main>
+<script>
+    const passwordInput = document.getElementById('senha');
+    const togglePassword = document.getElementById('togglePassword');
+    togglePassword.addEventListener('click', () => {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        togglePassword.classList.toggle('fa-eye');
+        togglePassword.classList.toggle('fa-eye-slash');
+    });
+</script>
 </body>
 </html>
