@@ -40,11 +40,18 @@ public class FilialController {
         Long filialId = usuario.getFilial().getId();
         Long usuarioId = usuario.getId();
 
-        HistoricMotorcycleFilial historico = entryExitService.registerEntry(filialId, usuarioId);
-        model.addAttribute("placa", historico.getMoto().getPlaca());
-        model.addAttribute("carrapato", historico.getCarrapato().getCodigoSerial());
+        try {
+            HistoricMotorcycleFilial historico = entryExitService.registerEntry(filialId, usuarioId);
+            model.addAttribute("placa", historico.getMoto().getPlaca());
+            model.addAttribute("carrapato", historico.getCarrapato().getCodigoSerial());
+            model.addAttribute("entradaRealizada", true);
+        } catch (IllegalStateException e) {
+            model.addAttribute("entradaRealizada", false);
+        }
+
         return "filial/entrada";
     }
+
 
     @GetMapping("/saida")
     public String saida(Model model, Principal principal) {
