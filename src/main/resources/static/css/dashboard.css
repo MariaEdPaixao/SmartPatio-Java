@@ -1,0 +1,148 @@
+.dash-container {
+    width: 100%;
+    padding: 2rem 4rem;
+    background: var(--background);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.dash-container h1 {
+    font-size: 2.2rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.dash-container h2 {
+    font-size: 1.5rem;
+    color: var(--secondary);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.welcome-message {
+    font-size: 1.2rem;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: #e9fbe9;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.welcome-message i {
+    font-size: 1.5rem;
+    color: var(--primary);
+}
+
+.welcome-message .brand {
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+}
+
+.card-summary {
+    background: #fff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+}
+
+.card-summary:hover {
+    transform: translateY(-4px);
+}
+
+.card-summary i {
+    font-size: 2.2rem;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.card-summary h3 {
+    font-size: 2rem;
+    margin: 0;
+    color: var(--text);
+}
+
+.card-summary p {
+    font-size: 1rem;
+    color: var(--placeholder);
+}
+
+.dashboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.dashboard-table th {
+    background: var(--primary);
+    color: #fff;
+    text-align: left;
+    padding: 1rem;
+    font-weight: 600;
+}
+
+.dashboard-table td {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text);
+}
+
+.dashboard-table tr:last-child td {
+    border-bottom: none;
+}
+
+.btn-dashboard {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--primary);
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    margin-top: 2rem;
+    align-self: flex-start;
+}
+
+.btn-dashboard:hover {
+    background: var(--button-hover-color);
+}
+
+canvas#graficoBateria {
+    max-width: 600px;
+    margin: 0 auto;
+    display: block;
+}
+
+.no-data-message {
+    background: #fff3cd;
+    color: #856404;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    font-size: 1rem;
+}
+
