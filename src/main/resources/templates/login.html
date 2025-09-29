@@ -13,7 +13,8 @@
     <div class="login-container">
         <div class="logo">SmartPatio</div>
         <form th:action="@{/login}" method="post">
-            <input type="email" name="username" placeholder="E-mail">
+            <input type="email" name="username" id="username" placeholder="E-mail"
+                   th:value="${username}">
             <input type="password" name="password" placeholder="Senha">
 
             <button type="submit">Entrar</button>
