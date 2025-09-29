@@ -41,7 +41,7 @@
 
         <div>
             <label for="filial">Filial:</label>
-            <select th:field="*{filial.id}" id="filial">
+            <select th:field="*{filial}" id="filial">
                 <option value="">Selecione...</option>
                 <option th:each="f : ${filiais}"
                         th:value="${f.id}"
