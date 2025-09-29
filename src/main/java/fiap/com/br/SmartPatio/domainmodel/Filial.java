@@ -24,4 +24,8 @@ public class Filial {
     @NotBlank(message = "O endereço é obrigatório")
     @Size(max = 200, message = "O endereço deve ter no máximo 200 caracteres")
     private String endereco;
+
+    public Filial(Long id) {
+        this.id = id;
+    }
 }

@@ -54,6 +54,10 @@ public class User implements UserDetails {
     @Getter @Setter
     private UserRole role;
 
+    public User(Long id) {
+        this.id = id;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if (this.role == UserRole.GESTOR) return List.of(new SimpleGrantedAuthority("ROLE_GESTOR"), new SimpleGrantedAuthority("ROLE_FUNCIONARIO"));
