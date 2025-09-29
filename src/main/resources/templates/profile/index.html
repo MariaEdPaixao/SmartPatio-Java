@@ -31,6 +31,7 @@
         </div>
 
         <div class="profile-info">
+            <p><strong>Pátio:</strong> <span th:text="${user.filial.nome}"></span></p>
             <p><strong>Endereço da filial:</strong> <span th:text="${user.filial.endereco}"></span></p>
 
             <div sec:authorize="hasRole('GESTOR')" class="gestor-stats">

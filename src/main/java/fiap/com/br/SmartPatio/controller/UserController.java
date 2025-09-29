@@ -1,9 +1,12 @@
 package fiap.com.br.SmartPatio.controller;
 
 import fiap.com.br.SmartPatio.controller.dto.UpdateUserDTO;
+import fiap.com.br.SmartPatio.domainmodel.HistoricMotorcycleFilial;
 import fiap.com.br.SmartPatio.domainmodel.User;
+import fiap.com.br.SmartPatio.domainmodel.enums.HistoricMotorcycleStatus;
 import fiap.com.br.SmartPatio.domainmodel.enums.UserRole;
 import fiap.com.br.SmartPatio.service.FilialServiceImpl;
+import fiap.com.br.SmartPatio.service.HistoricMotorcycleFilialServiceImpl;
 import fiap.com.br.SmartPatio.service.UserServiceImpl;
 import jakarta.validation.Valid;
 
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -23,13 +27,16 @@ public class UserController {
     private final FilialServiceImpl filialService;
     private final UserServiceImpl userService;
     private final PasswordEncoder passwordEncoder;
+    private final HistoricMotorcycleFilialServiceImpl historicoService;
 
     public UserController(FilialServiceImpl filialService,
                           UserServiceImpl userService,
-                          PasswordEncoder passwordEncoder) {
+                          PasswordEncoder passwordEncoder,
+                          HistoricMotorcycleFilialServiceImpl historicoService) {
         this.filialService = filialService;
         this.userService = userService;
         this.passwordEncoder = passwordEncoder;
+        this.historicoService = historicoService;
     }
 
     @GetMapping("/login")
@@ -69,7 +76,7 @@ public class UserController {
     public String profile(Model model, Principal principal) {
         User user = userService.findByEmail(principal.getName())
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
-
+        List<HistoricMotorcycleFilial> ativos = historicoService.findByStatusAndFilial(HistoricMotorcycleStatus.ATIVA, user.getFilial());
 
         model.addAttribute("user", user);
 
@@ -78,7 +85,7 @@ public class UserController {
             model.addAttribute("qtdFuncionarios", userService.
 
                     countByFilial(filialId));
-//            model.addAttribute("qtdMotosAtivas", historicoService.countMotosAtivasByFilial(filialId));
+            model.addAttribute("qtdMotosAtivas", ativos.size());
         }
 
         return "profile/index";
@@ -124,5 +131,24 @@ public class UserController {
 
         return "redirect:/login?deletedSuccess";
     }
+
+    @GetMapping("/funcionarios")
+    public String listFuncionarios(Model model, Principal principal) {
+        User gestor = userService.findByEmail(principal.getName())
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+        Long filialId = gestor.getFilial().getId();
+
+        var funcionarios = userService.findByFilialId(filialId)
+                .stream()
+                .filter(u -> !u.getId().equals(gestor.getId()))
+                .toList();
+
+        model.addAttribute("funcionarios", funcionarios);
+        model.addAttribute("gestor", gestor);
+
+        return "funcionarios/list"; 
+    }
+
 
 }
