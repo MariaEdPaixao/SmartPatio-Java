@@ -31,11 +31,10 @@ body {
 }
 
 .navbar {
-    width: 100%;
-    padding: 0.8rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0.8rem 2rem;
     background: #fff;
     border-bottom: 1px solid var(--border-color);
     position: sticky;
@@ -43,23 +42,31 @@ body {
     z-index: 10;
 }
 
-.logo {
-    color: var(--primary);
-    font-weight: bold;
-    font-size: 1.4rem;
-    text-decoration: none;
-    margin-right: 2rem;
+.nav-left,
+.nav-center,
+.nav-right {
+    display: flex;
+    align-items: center;
+}
+
+.nav-center {
+    flex: 1;
+    justify-content: center;
+}
+.nav-right{
+    gap: 12px;
 }
 
 .nav-links {
     display: flex;
-    gap: 1.2rem;
+    gap: 2rem;
     list-style: none;
 }
 
 .nav-links a {
     color: var(--text);
     text-decoration: none;
+    font-weight: 500;
     padding: 0.3rem 0.6rem;
     border-radius: 6px;
     transition: background 0.2s, color 0.2s;
@@ -70,13 +77,14 @@ body {
     color: #fff;
 }
 
-.nav-right {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    color: var(--text);
-}
 
+.logo {
+    color: var(--primary);
+    font-weight: bold;
+    font-size: 1.4rem;
+    text-decoration: none;
+    margin-right: 2rem;
+}
 
 .logout-form {
     display: flex;
