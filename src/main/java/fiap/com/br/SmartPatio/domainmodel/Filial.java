@@ -12,7 +12,6 @@ import java.util.Objects;
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = "id")
 public class Filial {
 
     @Id

@@ -3,9 +3,7 @@ package fiap.com.br.SmartPatio.controller;
 import fiap.com.br.SmartPatio.domainmodel.HistoricMotorcycleFilial;
 import fiap.com.br.SmartPatio.domainmodel.User;
 import fiap.com.br.SmartPatio.domainmodel.enums.HistoricMotorcycleStatus;
-import fiap.com.br.SmartPatio.service.HistoricMotorcycleFilialServiceImpl;
-import fiap.com.br.SmartPatio.service.MotorcycleEntryExitServiceImpl;
-import fiap.com.br.SmartPatio.service.UserServiceImpl;
+import fiap.com.br.SmartPatio.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,11 +17,11 @@ import java.util.List;
 public class FilialController {
 
 
-    private final MotorcycleEntryExitServiceImpl entryExitService;
-    private final HistoricMotorcycleFilialServiceImpl historicoService;
-    private final UserServiceImpl userService;
+    private final MotorcycleEntryExitService entryExitService;
+    private final HistoricMotorcycleFilialService historicoService;
+    private final UserService userService;
 
-    public FilialController(MotorcycleEntryExitServiceImpl entryExitService, UserServiceImpl userService, HistoricMotorcycleFilialServiceImpl historicoService) {
+    public FilialController(MotorcycleEntryExitService entryExitService, UserService userService, HistoricMotorcycleFilialService historicoService) {
         this.entryExitService = entryExitService;
         this.userService = userService;
         this.historicoService = historicoService;

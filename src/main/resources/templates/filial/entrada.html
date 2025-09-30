@@ -27,8 +27,8 @@
 <div th:replace="fragments/footer :: main-footer"></div>
 
 <script th:inline="javascript">
-    const placa = "ABC123";
-    const carrapato = "XY789";
+    const placa = /*[[${placa}]]*/ "";
+    const carrapato = /*[[${carrapato}]]*/ "";
 
     function simulateEntrada(moto, carrapato) {
         const log = document.getElementById("log");

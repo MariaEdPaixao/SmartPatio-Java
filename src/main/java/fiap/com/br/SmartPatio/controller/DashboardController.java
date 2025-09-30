@@ -4,9 +4,7 @@ import fiap.com.br.SmartPatio.domainmodel.Carrapato;
 import fiap.com.br.SmartPatio.domainmodel.HistoricMotorcycleFilial;
 import fiap.com.br.SmartPatio.domainmodel.User;
 import fiap.com.br.SmartPatio.domainmodel.enums.HistoricMotorcycleStatus;
-import fiap.com.br.SmartPatio.service.CarrapatoServiceImpl;
-import fiap.com.br.SmartPatio.service.HistoricMotorcycleFilialServiceImpl;
-import fiap.com.br.SmartPatio.service.UserServiceImpl;
+import fiap.com.br.SmartPatio.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,12 +15,12 @@ import java.util.List;
 @Controller
 public class DashboardController {
 
-    private final HistoricMotorcycleFilialServiceImpl historicoService;
-    private final CarrapatoServiceImpl carrapatoService;
-    private final UserServiceImpl userService;
+    private final HistoricMotorcycleFilialService historicoService;
+    private final CarrapatoService carrapatoService;
+    private final UserService userService;
 
-    public DashboardController(HistoricMotorcycleFilialServiceImpl historicoService,
-                               CarrapatoServiceImpl carrapatoService, UserServiceImpl userService) {
+    public DashboardController(HistoricMotorcycleFilialService historicoService,
+                               CarrapatoService carrapatoService, UserService userService) {
         this.historicoService = historicoService;
         this.carrapatoService = carrapatoService;
         this.userService = userService;
