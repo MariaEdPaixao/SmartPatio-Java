@@ -76,11 +76,9 @@ Antes de rodar o projeto, você precisa ter instalado:
 
 2. Configure o banco no arquivo `application.properties`:
    ```properties
-   spring.datasource.url=jdbc:oracle:thin:@localhost:1521:xe
+   spring.datasource.url=jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL
    spring.datasource.username=SEU_USER
    spring.datasource.password=SEU_PASS
-   spring.jpa.hibernate.ddl-auto=validate
-   spring.flyway.enabled=true
    ```
 
 3. Inicie a aplicação:
@@ -92,6 +90,24 @@ Antes de rodar o projeto, você precisa ter instalado:
    ```
    http://localhost:8080
    ```
+## 🐳 Executar via Docker
+
+O sistema Web da SmartPatio desenvolvido em Java com Thymeleaf está disponível como imagem pública no Docker Hub: `mariaedpaixao/smartpatio-java`.
+
+- Pré-requisito: ter o Docker instalado e acesso à base Oracle.
+- A imagem escuta na porta interna 8080.
+
+Passos:
+1) Baixe a imagem
+```
+docker pull mariaedpaixao/smartpatio-java
+```
+2) Execute o container:
+```
+docker run -d -p 8080:8080 -e DB_USERNAME=$DB_USERNAME -e DB_PASSWORD=$DB_PASSWORD --name smartpatio mariaedpaixao/smartpatio-java:latest
+```
+
+Acesse o sistema web: http://localhost:8080
 
 ---
 
