@@ -44,12 +44,10 @@ CREATE TABLE historico_moto_filial
     id_moto      NUMBER NOT NULL,
     id_filial    NUMBER NOT NULL,
     id_carrapato NUMBER,
-    id_usuario   NUMBER,
     data_entrada TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     data_saida   TIMESTAMP,
     status       VARCHAR2(20) DEFAULT 'ATIVA' CHECK (status IN ('ATIVA', 'FINALIZADA')),
     CONSTRAINT hist_moto_fk FOREIGN KEY (id_moto) REFERENCES moto (id),
     CONSTRAINT hist_filial_fk FOREIGN KEY (id_filial) REFERENCES filial (id),
-    CONSTRAINT hist_carrapato_fk FOREIGN KEY (id_carrapato) REFERENCES carrapato (id),
-    CONSTRAINT hist_usuario_fk FOREIGN KEY (id_usuario) REFERENCES usuario (id)
+    CONSTRAINT hist_carrapato_fk FOREIGN KEY (id_carrapato) REFERENCES carrapato (id)
 );

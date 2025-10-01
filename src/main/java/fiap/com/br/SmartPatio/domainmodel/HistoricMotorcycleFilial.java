@@ -35,11 +35,6 @@ public class HistoricMotorcycleFilial {
     @Getter @Setter
     private Carrapato carrapato;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_usuario")
-    @Getter @Setter
-    private User usuario;
-
     @Column(name = "data_entrada", nullable = false, updatable = false)
     @Getter @Setter
     private LocalDateTime dataEntrada = LocalDateTime.now();

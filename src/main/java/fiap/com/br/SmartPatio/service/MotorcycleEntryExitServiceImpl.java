@@ -34,7 +34,7 @@ public class MotorcycleEntryExitServiceImpl implements MotorcycleEntryExitServic
         Motorcycle moto = buscarMotoDisponivel();
         Carrapato carrapato = buscarCarrapatoDisponivel();
 
-        HistoricMotorcycleFilial historico = criarHistoricoEntrada(moto, carrapato, filialId, usuarioId);
+        HistoricMotorcycleFilial historico = criarHistoricoEntrada(moto, carrapato, filialId);
         atualizarStatusCarrapato(carrapato, CarrapatoStatus.EM_USO);
 
         persistirHistoricoComCarrapato(historico, carrapato);
@@ -89,12 +89,11 @@ public class MotorcycleEntryExitServiceImpl implements MotorcycleEntryExitServic
                 .orElseThrow(() -> new IllegalStateException("Nenhum carrapato disponível"));
     }
 
-    private HistoricMotorcycleFilial criarHistoricoEntrada(Motorcycle moto, Carrapato carrapato, Long filialId, Long usuarioId) {
+    private HistoricMotorcycleFilial criarHistoricoEntrada(Motorcycle moto, Carrapato carrapato, Long filialId) {
         HistoricMotorcycleFilial historico = new HistoricMotorcycleFilial();
         historico.setMoto(moto);
         historico.setFilial(new Filial(filialId));
         historico.setCarrapato(carrapato);
-        historico.setUsuario(new User(usuarioId));
         historico.setStatus(HistoricMotorcycleStatus.ATIVA);
         historico.setDataEntrada(LocalDateTime.now());
         return historico;

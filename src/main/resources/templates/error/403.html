@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Página não encontrada - SmartPatio</title>
+    <link rel="stylesheet" th:href="@{/css/layout.css}">
+    <link rel="stylesheet" th:href="@{/css/error.css}">
+</head>
+<body>
+<div th:replace="fragments/header :: main-header"></div>
+
+<main class="container">
+    <h1><i class="fas fa-map-signs"></i> Opa! Essa rua não leva ao pátio</h1>
+    <p>Parece que você entrou numa rota que <strong>você não tem acesso</strong>. Que tal voltar ao menu e tentar de novo?</p>
+    <a href="/" class="btn-voltar"><i class="fas fa-arrow-left"></i> Voltar ao menu principal</a>
+</main>
+
+<div th:replace="fragments/footer :: main-footer"></div>
+</body>
+</html>
