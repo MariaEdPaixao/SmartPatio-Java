@@ -104,7 +104,7 @@ docker pull mariaedpaixao/smartpatio-java
 ```
 2) Execute o container:
 ```
-docker run -d -p 8080:8080 -e DB_USERNAME=$DB_USERNAME -e DB_PASSWORD=$DB_PASSWORD --name smartpatio mariaedpaixao/smartpatio-java:latest
+docker run -d -p 8080:8080 -e DB_USERNAME=SEU_USUARIO -e DB_PASSWORD=SUA_SENHA --name smartpatio mariaedpaixao/smartpatio-java:latest
 ```
 
 Acesse o sistema web: http://localhost:8080
