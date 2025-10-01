@@ -7,21 +7,7 @@ O **SmartPátio** é um sistema web, desenvolvido em Thymeleaf, Spring Boot e Sp
 - **Corredor inteligente:** câmera com visão computacional e OCR para leitura automática de placas na entrada/saída
 - **Dispositivo IOT (carrapato):** dispositivo acoplado à moto, composto por ESP32, LED âmbar, buzzer audível e acoplamento magnético.
 - **Sistema Web:** interface para registro de históricos (de entrada e saída), gestão das motos no pátio, integrada ao sistema da Mottu.
----
 
-## 📑 Sumário
-- [Sobre o Projeto](#-sobre-o-projeto)
-- [Arquitetura](#-arquitetura)
-- [Funcionalidades](#-funcionalidades)
-- [Tecnologias](#-tecnologias)
-- [Pré-requisitos](#-pré-requisitos)
-- [Instalação e Execução](#-instalação-e-execução)
-- [Migrations](#-migrations)
-- [Endpoints Principais](#-endpoints-principais)
-- [Estrutura do Projeto](#-estrutura-do-projeto)
-- [Dashboard](#-dashboard)
-- [Contribuição](#-contribuição)
-- [Licença](#-licença)
 
 ---
 
