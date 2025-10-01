@@ -54,7 +54,14 @@ public class AuthController {
             return "register";
         }
 
-        authService.registerUser(user);
+        boolean sucesso = authService.registerUser(user);
+        if (!sucesso) {
+            model.addAttribute("emailDuplicado", true);
+            model.addAttribute("filiais", filialService.findAll());
+            model.addAttribute("roles", UserRole.values());
+            return "register";
+        }
+
         return "redirect:/login?cadastroOk";
     }
 

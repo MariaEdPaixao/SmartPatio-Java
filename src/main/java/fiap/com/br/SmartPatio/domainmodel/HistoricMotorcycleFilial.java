@@ -18,24 +18,24 @@ public class HistoricMotorcycleFilial {
     @Getter
     private Long id;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_moto", nullable = false)
     @NotNull(message = "A moto é obrigatória")
     @Getter @Setter
     private Motorcycle moto;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_filial", nullable = false)
     @NotNull(message = "A filial é obrigatória")
     @Getter @Setter
     private Filial filial;
 
-    @ManyToOne
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_carrapato")
     @Getter @Setter
     private Carrapato carrapato;
 
-    @ManyToOne
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_usuario")
     @Getter @Setter
     private User usuario;

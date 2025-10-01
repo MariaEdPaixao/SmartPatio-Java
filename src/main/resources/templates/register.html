@@ -7,69 +7,74 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-<div class="login-container">
-    <h1>Cadastro de Usuário</h1>
+<main class="container">
+    <div th:if="${emailDuplicado}" class="alert error">
+        <i class="fa fa-exclamation-circle"></i> Este e-mail já está sendo utilizado. Tente outro.
+    </div>
+    <div class="login-container">
+        <h1>Cadastro de Usuário</h1>
 
-    <form th:action="@{/register}" th:object="${user}" method="post">
-        <div>
-            <label for="nome">Nome:</label>
-            <input type="text" th:field="*{nome}" id="nome" placeholder="Digite seu nome">
-            <span class="error" th:if="${#fields.hasErrors('nome')}"
-                  th:errors="*{nome}"></span>
-        </div>
-
-        <div>
-            <label for="email">Email:</label>
-            <input type="email" th:field="*{email}" id="email" placeholder="Digite seu email">
-            <span class="error" th:if="${#fields.hasErrors('email')}"
-                  th:errors="*{email}"></span>
-        </div>
-
-        <div>
-            <label for="senha">Senha:</label>
-            <div style="position: relative;">
-                <input type="password" th:field="*{senha}" id="senha"
-                       placeholder="Escolha uma senha">
-                <i id="togglePassword" class="fa-solid fa-eye"
-                   style="position: absolute; right: 10px; top: 50%;
-              transform: translateY(-50%); cursor: pointer;">
-                </i>
+        <form th:action="@{/register}" th:object="${user}" method="post">
+            <div>
+                <label for="nome">Nome:</label>
+                <input type="text" th:field="*{nome}" id="nome" placeholder="Digite seu nome">
+                <span class="error" th:if="${#fields.hasErrors('nome')}"
+                      th:errors="*{nome}"></span>
             </div>
-            <span class="error" th:if="${#fields.hasErrors('senha')}"
-                  th:errors="*{senha}"></span>
-        </div>
 
-        <div>
-            <label for="filial">Filial:</label>
-            <select th:field="*{filial}" id="filial">
-                <option value="">Selecione...</option>
-                <option th:each="f : ${filiais}"
-                        th:value="${f.id}"
-                        th:text="${f.nome}">
-                </option>
-            </select>
-            <span class="error" th:if="${#fields.hasErrors('filial')}"
-                  th:errors="*{filial}"></span>
-        </div>
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" th:field="*{email}" id="email" placeholder="Digite seu email">
+                <span class="error" th:if="${#fields.hasErrors('email')}"
+                      th:errors="*{email}"></span>
+            </div>
 
-        <div>
-            <label for="role">Papel:</label>
-            <select th:field="*{role}" id="role">
-                <option value="">Selecione...</option>
-                <option th:each="r : ${roles}"
-                        th:value="${r.name()}"
-                        th:text="${r.name()}"></option>
-            </select>
-            <span class="error" th:if="${#fields.hasErrors('role')}"
-                  th:errors="*{role}"></span>
-        </div>
+            <div>
+                <label for="senha">Senha:</label>
+                <div style="position: relative;">
+                    <input type="password" th:field="*{senha}" id="senha"
+                           placeholder="Escolha uma senha">
+                    <i id="togglePassword" class="fa-solid fa-eye"
+                       style="position: absolute; right: 10px; top: 50%;
+                  transform: translateY(-50%); cursor: pointer;">
+                    </i>
+                </div>
+                <span class="error" th:if="${#fields.hasErrors('senha')}"
+                      th:errors="*{senha}"></span>
+            </div>
 
-        <button type="submit">Registrar</button>
-        <div class="links">
-            <a th:href="@{/login}">Já tem conta? Faça o login</a>
-        </div>
-    </form>
-</div>
+            <div>
+                <label for="filial">Filial:</label>
+                <select th:field="*{filial}" id="filial">
+                    <option value="">Selecione...</option>
+                    <option th:each="f : ${filiais}"
+                            th:value="${f.id}"
+                            th:text="${f.nome}">
+                    </option>
+                </select>
+                <span class="error" th:if="${#fields.hasErrors('filial')}"
+                      th:errors="*{filial}"></span>
+            </div>
+
+            <div>
+                <label for="role">Papel:</label>
+                <select th:field="*{role}" id="role">
+                    <option value="">Selecione...</option>
+                    <option th:each="r : ${roles}"
+                            th:value="${r.name()}"
+                            th:text="${r.name()}"></option>
+                </select>
+                <span class="error" th:if="${#fields.hasErrors('role')}"
+                      th:errors="*{role}"></span>
+            </div>
+
+            <button type="submit">Registrar</button>
+            <div class="links">
+                <a th:href="@{/login}">Já tem conta? Faça o login</a>
+            </div>
+        </form>
+    </div>
+</main>
 
 <script>
     const passwordInput = document.getElementById('senha');

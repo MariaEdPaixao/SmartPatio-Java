@@ -257,3 +257,13 @@ select:invalid:focus {
     color: #1ba857;
     border: 1px solid #1ba857;
 }
+.alert.error {
+    background: #fdecea;
+    color: #d93025;
+    border: 1px solid #d93025;
+    padding: 12px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    font-size: 14px;
+}
+

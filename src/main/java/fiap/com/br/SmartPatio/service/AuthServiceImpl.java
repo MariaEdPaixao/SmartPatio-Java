@@ -17,11 +17,16 @@ public class AuthServiceImpl implements AuthService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public void registerUser(User user) {
+    public boolean registerUser(User user) {
+        if (userService.findByEmail(user.getEmail()).isPresent()) {
+            return false;
+        }
+
         Long filialId = user.getFilial().getId();
         user.setFilial(filialService.findById(filialId));
         user.setSenha(passwordEncoder.encode(user.getSenha()));
         userService.save(user);
+        return true;
     }
 
     public boolean resetPassword(ResetPassordDTO dto) {
