@@ -13,7 +13,7 @@ public class EmployeesServiceImpl implements EmployeesService{
         this.userService = userService;
     }
 
-    public List<User> listarFuncionariosDaFilial(Long filialId, Long gestorId) {
+    public List<User> listBranchEmployees(Long filialId, Long gestorId) {
         return userService.findByFilialId(filialId)
                 .stream()
                 .filter(u -> !u.getId().equals(gestorId))

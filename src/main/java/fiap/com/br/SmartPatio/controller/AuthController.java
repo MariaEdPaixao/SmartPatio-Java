@@ -1,6 +1,6 @@
 package fiap.com.br.SmartPatio.controller;
 
-import fiap.com.br.SmartPatio.controller.dto.ResetPassordDTO;
+import fiap.com.br.SmartPatio.controller.dto.ResetPasswordDTO;
 import fiap.com.br.SmartPatio.domainmodel.User;
 import fiap.com.br.SmartPatio.domainmodel.enums.UserRole;
 import fiap.com.br.SmartPatio.service.AuthService;
@@ -67,12 +67,12 @@ public class AuthController {
 
     @GetMapping("/redefinir-senha")
     public String showResetForm(Model model) {
-        model.addAttribute("user", new ResetPassordDTO());
+        model.addAttribute("user", new ResetPasswordDTO());
         return "redefinir-senha";
     }
 
     @PostMapping("/redefinir-senha")
-    public String processReset(@Valid @ModelAttribute("user") ResetPassordDTO dto,
+    public String processReset(@Valid @ModelAttribute("user") ResetPasswordDTO dto,
                                BindingResult result,
                                Model model) {
         if (result.hasErrors()) {

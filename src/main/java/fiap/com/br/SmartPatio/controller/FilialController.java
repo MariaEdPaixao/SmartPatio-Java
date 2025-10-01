@@ -33,7 +33,7 @@ public class FilialController {
     }
 
     @GetMapping("/entrada")
-    public String entrada(Model model, Principal principal) {
+    public String entryOfMotorcycles(Model model, Principal principal) {
         User usuario = userService.findByEmailOrThrow(principal.getName());
         Long filialId = usuario.getFilial().getId();
         Long usuarioId = usuario.getId();
@@ -52,7 +52,7 @@ public class FilialController {
 
 
     @GetMapping("/saida")
-    public String saida(Model model, Principal principal) {
+    public String exitOfMotorcycles(Model model, Principal principal) {
         User user = userService.findByEmailOrThrow(principal.getName());
         Long filialId = user.getFilial().getId();
 

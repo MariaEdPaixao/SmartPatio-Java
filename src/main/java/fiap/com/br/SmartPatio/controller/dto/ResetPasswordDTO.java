@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
-public class ResetPassordDTO {
+public class ResetPasswordDTO {
     @NotBlank(message = "O email é obrigatório")
     @Email(message = "O email deve ser válido")
     @Size(max = 100, message = "O email deve ter no máximo 100 caracteres")

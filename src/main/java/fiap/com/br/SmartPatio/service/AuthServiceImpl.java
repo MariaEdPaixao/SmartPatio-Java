@@ -1,6 +1,6 @@
 package fiap.com.br.SmartPatio.service;
 
-import fiap.com.br.SmartPatio.controller.dto.ResetPassordDTO;
+import fiap.com.br.SmartPatio.controller.dto.ResetPasswordDTO;
 import fiap.com.br.SmartPatio.domainmodel.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -25,15 +25,15 @@ public class AuthServiceImpl implements AuthService {
         Long filialId = user.getFilial().getId();
         user.setFilial(filialService.findById(filialId));
         user.setSenha(passwordEncoder.encode(user.getSenha()));
-        userService.save(user);
+        userService.saveUser(user);
         return true;
     }
 
-    public boolean resetPassword(ResetPassordDTO dto) {
+    public boolean resetPassword(ResetPasswordDTO dto) {
         return userService.findByEmail(dto.getEmail())
                 .map(user -> {
                     user.setSenha(passwordEncoder.encode(dto.getSenha()));
-                    userService.save(user);
+                    userService.saveUser(user);
                     return true;
                 })
                 .orElse(false);
