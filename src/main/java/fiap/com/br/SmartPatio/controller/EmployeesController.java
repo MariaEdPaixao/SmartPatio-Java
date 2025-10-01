@@ -21,11 +21,11 @@ public class EmployeesController {
     }
 
     @GetMapping("/funcionarios")
-    public String listFuncionarios(Model model, Principal principal) {
+    public String listEmployees(Model model, Principal principal) {
         User gestor = userService.findByEmailOrThrow(principal.getName());
         Long filialId = gestor.getFilial().getId();
 
-        var funcionarios = employeesService.listarFuncionariosDaFilial(filialId, gestor.getId());
+        var funcionarios = employeesService.listBranchEmployees(filialId, gestor.getId());
 
         model.addAttribute("funcionarios", funcionarios);
         model.addAttribute("gestor", gestor);

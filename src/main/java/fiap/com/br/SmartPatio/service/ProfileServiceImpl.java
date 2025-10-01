@@ -26,15 +26,15 @@ public class ProfileServiceImpl implements ProfileService{
         return userService.findByEmailOrThrow(email);
     }
     @Override
-    public int contarFuncionariosDaFilial(Long filialId) {
+    public int countBranchEmployees(Long filialId) {
         return (int) userService.countByFilial(filialId);
     }
     @Override
-    public int contarMotosAtivas(User user) {
+    public int countActiveMotorcycles(User user) {
         return historicoService.findByStatusAndFilial(HistoricMotorcycleStatus.ATIVA, user.getFilial()).size();
     }
     @Override
-    public void atualizarPerfil(User user, UpdateUserDTO dto) {
+    public void updateProfile(User user, UpdateUserDTO dto) {
         user.setNome(dto.getNome());
         user.setEmail(dto.getEmail());
 
@@ -42,10 +42,10 @@ public class ProfileServiceImpl implements ProfileService{
             user.setSenha(passwordEncoder.encode(dto.getSenha()));
         }
 
-        userService.save(user);
+        userService.saveUser(user);
     }
     @Override
-    public void excluirUsuario(User user) {
+    public void deleteUser(User user) {
         userService.deleteById(user.getId());
     }
 }

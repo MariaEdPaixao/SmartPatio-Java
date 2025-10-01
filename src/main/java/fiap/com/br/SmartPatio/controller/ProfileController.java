@@ -30,8 +30,8 @@ public class ProfileController {
 
         if (user.getRole().equals(UserRole.GESTOR)) {
             Long filialId = user.getFilial().getId();
-            model.addAttribute("qtdFuncionarios", profileService.contarFuncionariosDaFilial(filialId));
-            model.addAttribute("qtdMotosAtivas", profileService.contarMotosAtivas(user));
+            model.addAttribute("qtdFuncionarios", profileService.countBranchEmployees(filialId));
+            model.addAttribute("qtdMotosAtivas", profileService.countActiveMotorcycles(user));
         }
 
         return "profile/index";
@@ -53,7 +53,7 @@ public class ProfileController {
         }
 
         User user = profileService.getUsuarioLogado(principal.getName());
-        profileService.atualizarPerfil(user, dto);
+        profileService.updateProfile(user, dto);
 
         return "redirect:/perfil?editSuccess";
     }
@@ -61,7 +61,7 @@ public class ProfileController {
     @PostMapping("perfil/deletar")
     public String deleteUser(Principal principal) {
         User user = profileService.getUsuarioLogado(principal.getName());
-        profileService.excluirUsuario(user);
+        profileService.deleteUser(user);
 
         return "redirect:/login?deletedSuccess";
     }
