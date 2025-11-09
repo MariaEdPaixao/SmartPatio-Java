@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<div th:replace="fragments/header :: main-header"></div>
+<div th:replace="~{fragments/header :: main-header}"></div>
 
 <main class="profile-container">
     <div th:if="${param.editSuccess}" class="alert success">
@@ -73,7 +73,7 @@
     </div>
 </main>
 
-<div th:replace="fragments/footer :: main-footer"></div>
+<div th:replace="~{fragments/footer :: main-footer}"></div>
 
 <script>
     const deleteBtn = document.getElementById("deleteBtn");

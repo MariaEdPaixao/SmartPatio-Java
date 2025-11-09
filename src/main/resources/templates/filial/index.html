@@ -9,7 +9,7 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-<div th:replace="fragments/header :: main-header"></div>
+<div th:replace="~{fragments/header :: main-header}"></div>
 
 <main class="patio-container">
     <h1><i class="fa-solid fa-warehouse"></i> Controle de Pátio</h1>
@@ -30,6 +30,6 @@
     </div>
 </main>
 
-<div th:replace="fragments/footer :: main-footer"></div>
+<div th:replace="~{fragments/footer :: main-footer}"></div>
 </body>
 </html>

@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<div th:replace="fragments/header :: main-header"></div>
+<div th:replace="~{fragments/header :: main-header}"></div>
 
 <main class="funcionarios-container">
     <h1><i class="fa fa-users"></i> Funcionários da Filial</h1>
@@ -37,7 +37,7 @@
     </table>
 </main>
 
-<div th:replace="fragments/footer :: main-footer"></div>
+<div th:replace="~{fragments/footer :: main-footer}"></div>
 
 </body>
 </html>
