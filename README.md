@@ -35,6 +35,19 @@ Controller -> Service -> Repository -> Database
 
 ---
 
+## 🧱 Arquitetura do Sistema
+A arquitetura da solução SmartPatio integra diversas camadas e tecnologias —
+desde o frontend com Thymeleaf até o backend com Spring Boot e o banco Oracle.
+
+![Arquitetura do Sistema](./imgs/arquitetura-smartpatio.png)
+
+> Diagrama representando a comunicação entre os módulos da solução:
+> - Java (Visão Computacional e Gestão do Pátio)
+> - App Mobile (Localização de motos via IoT)
+> - API .NET e Banco Oracle (Integração e persistência)
+> - Azure DevOps (CI/CD e deploy)
+> - QA (organização de sprints e testes)
+---
 ## ⚙️ Funcionalidades
 ✅ Autenticação e autorização com Spring Security.  
 ✅ CRUD de usuários e perfil.  
