@@ -74,14 +74,31 @@ Antes de rodar o projeto, você precisa ter instalado:
    cd smartpatio
    ```
 
-2. Configure o banco no arquivo `application.properties`:
-   ```properties
-   spring.datasource.url=jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL
-   spring.datasource.username=SEU_USER
-   spring.datasource.password=SEU_PASS
+2. Crie um arquivo .env na raiz do projeto com suas credenciais do Oracle:   
+   ```bash
+   DB_USERNAME=SEU_USUARIO
+   DB_PASSWORD=SUA_SENHA
    ```
+   > Essas variáveis são carregadas automaticamente pela classe EnvConfig, garantindo que dados sensíveis (como usuário e senha do banco) não fiquem expostos no código.
 
-3. Inicie a aplicação:
+3. Verifique o arquivo **application.properties**:
+
+   Ele já utiliza as variáveis do .env:
+   ````properties
+   spring.datasource.url=jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL
+   spring.datasource.username=${DB_USERNAME}
+   spring.datasource.password=${DB_PASSWORD}
+   spring.datasource.driver-class-name=oracle.jdbc.OracleDriver
+   
+   spring.jpa.database-platform=org.hibernate.dialect.OracleDialect
+   spring.jpa.show-sql=true
+   spring.jpa.hibernate.ddl-auto=none
+   spring.jpa.properties.hibernate.format_sql=true
+   
+   spring.flyway.baseline-on-migrate=true
+   ````
+
+4. Inicie a aplicação:
    ```bash
    mvn spring-boot:run
    ```
@@ -90,6 +107,15 @@ Antes de rodar o projeto, você precisa ter instalado:
    ```
    http://localhost:8080
    ```
+
+## ☁️ Deploy online (Azure App Service)
+O **SmartPatio** também está disponível online, demonstrando a integração da disciplina de **DevOps** com **Azure**.
+
+Utilizamos **pipelines automatizadas no Azure DevOps** para realizar build, test e deploy contínuos a cada novo commit.
+
+ Acesse o sistema online:
+ [https://smartpatio.azurewebsites.net/](https://smartpatio.azurewebsites.net/)
+   
 ## 🐳 Executar via Docker
 
 O sistema Web da SmartPatio desenvolvido em Java com Thymeleaf está disponível como imagem pública no Docker Hub: `mariaedpaixao/smartpatio-java`.
