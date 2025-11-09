@@ -21,18 +21,33 @@ O **SmartPatio** é uma aplicação web que permite:
 
 ---
 
-## 🏗 Arquitetura
-- **Camada Controller**: Responsável por receber as requisições HTTP.
-- **Camada Service**: Contém as regras de negócio.
-- **Camada Repository**: Comunicação com o banco via Spring Data JPA.
-- **Camada DomainModel**: Entidades mapeadas com JPA.
-- **DTOs**: Transferência de dados entre camadas.
+## 🏗 Arquitetura do JAVA 
+
+O **SmartPatio** segue o padrão de arquitetura **MVC (Model-View-Controller)**, garantindo uma separação clara entre as responsabilidades da aplicação.
+
+### 📂 Camadas
+
+- **Controller:** Recebe as requisições HTTP do navegador (cliente) e direciona as ações necessárias.  
+- **Service:** Contém as regras de negócio — aqui estão as operações principais, como registrar entradas, saídas e gerar dados para o dashboard.  
+- **Repository:** Responsável pela comunicação com o banco de dados Oracle, utilizando o **Spring Data JPA** para simplificar consultas e persistência de dados.  
+- **Model (Domain Model):** Representa as entidades da aplicação (como `Moto`, `Carrapato`, `Usuario`), mapeadas com **JPA**.  
+- **DTOs (Data Transfer Objects):** Fazem a ponte entre as camadas, transferindo dados de forma otimizada e segura.  
+- **Templates (View):** Utilizam o **Thymeleaf** para renderizar as páginas HTML dinamicamente, exibindo as informações retornadas pelo backend.
+
+### 🔄 Fluxo Completo da Aplicação
+
+1. O usuário acessa o navegador e entra em uma rota (por exemplo, `/perfil` ou `/dashboard`).  
+2. O **Controller** recebe a requisição e aciona o **Service** correspondente.  
+3. O **Service** executa a lógica de negócio (por exemplo, buscar histórico de movimentações ou registrar uma nova moto).  
+4. Caso precise de dados, o **Service** utiliza o **Repository** para se comunicar com o banco Oracle.  
+5. O resultado é retornado ao **Controller**, que envia esses dados para o **Template Thymeleaf**.  
+6. O **Template (View)** renderiza as informações de forma dinâmica, exibindo ao usuário na interface web.
 
 Fluxo:
 ```
-Controller -> Service -> Repository -> Database
+Controller → Service → Repository → Database → View (Thymeleaf)
 ```
-
+> Essa estrutura permite **alta organização, manutenção facilitada e escalabilidade**, além de garantir uma **integração fluida com o banco Oracle e o restante da solução SmartPatio**.
 ---
 
 ## 🧱 Arquitetura do Sistema
