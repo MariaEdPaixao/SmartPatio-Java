@@ -23,7 +23,7 @@ O **SmartPatio** é uma aplicação web que permite:
 
 ## 🏗 Arquitetura do JAVA 
 
-O **SmartPatio** segue o padrão de arquitetura **MVC (Model-View-Controller)**, garantindo uma separação clara entre as responsabilidades da aplicação.
+O **SmartPatio** segue o padrão de arquitetura **MVC (Model-View-Controller)** com o **framework Spring Boot**, garantindo uma separação clara entre as responsabilidades da aplicação.
 
 ### 📂 Camadas
 
